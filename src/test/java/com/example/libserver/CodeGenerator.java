@@ -131,7 +131,7 @@ public class CodeGenerator {
 
         //执行哪张表
         //strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
-        strategy.setInclude("favorite");
+        strategy.setInclude("like");
 
         strategy.setControllerMappingHyphenStyle(true); //url中驼峰转连字符
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀

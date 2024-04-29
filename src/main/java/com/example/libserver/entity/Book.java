@@ -40,4 +40,6 @@ public class Book implements Serializable {
 
     @TableField(exist = false)
     private String category;
+
+    private Integer likeNum;
 }

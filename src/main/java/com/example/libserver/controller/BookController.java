@@ -4,10 +4,12 @@ package com.example.libserver.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.libserver.common.AjaxResult;
 import com.example.libserver.entity.Book;
+import com.example.libserver.entity.BookLike;
 import com.example.libserver.entity.Category;
 import com.example.libserver.entity.User;
 import com.example.libserver.service.IBookService;
 import com.example.libserver.service.ICategoryService;
+import com.example.libserver.service.ILikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +32,8 @@ public class BookController {
     private IBookService bookService;
     @Autowired
     private ICategoryService categoryService;
+    @Autowired
+    private ILikeService likeService;
 
     @GetMapping("getBookList")
     public AjaxResult getBookList() {
@@ -91,6 +95,9 @@ public class BookController {
         Book one = bookService.getOne(wrapper);
 
         one.setCategory(bookService.getCategory(one.getCategoryId()));
+        QueryWrapper<BookLike> wrapperBookLike = new QueryWrapper<>();
+        wrapperBookLike.eq("book_id", book.getId());
+        one.setLikeNum(likeService.count(wrapperBookLike));
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("info", one);
@@ -155,6 +162,17 @@ public class BookController {
         wrapper.eq("category_id", book.getCategoryId());
         List<Book> list = bookService.list(wrapper);
 
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("list", list);
+
+        return AjaxResult.Success(map);
+    }
+
+    @GetMapping("getLikeRankList")
+    public AjaxResult getLikeRankList() {
+        QueryWrapper<Book> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("like_num");
+        List<Book> list = bookService.list(wrapper);
         HashMap<String, Object> map = new HashMap<>();
         map.put("list", list);
 

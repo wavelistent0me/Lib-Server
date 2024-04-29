@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -70,6 +72,36 @@ public class ImageUploadController {
         }
         catch (IOException e) {
             e.printStackTrace();
+            return AjaxResult.Error();
+        }
+    }
+
+    @PostMapping("/textUpload")
+    public AjaxResult handleFileUpload(MultipartFile file) {
+        try {
+            // 打印文件名
+            System.out.println("Received file: " + file.getOriginalFilename());
+
+            InputStreamReader isr = new InputStreamReader(file.getInputStream());
+            BufferedReader br = new BufferedReader(isr);
+            String str = null;
+            while ((str = br.readLine()) != null){
+                System.out.println(str);
+            }
+            System.out.println("----------------------------------------------");
+            // 读取文件内容并打印
+            String content = new String(file.getBytes());
+            System.out.println("File content: " + content);
+
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("content", content);
+
+            // 返回成功提示
+            return AjaxResult.Success(map);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+            // 返回失败提示
             return AjaxResult.Error();
         }
     }

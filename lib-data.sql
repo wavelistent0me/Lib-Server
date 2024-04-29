@@ -28,7 +28,9 @@ CREATE TABLE `book` (
   `avatar` varchar(255) DEFAULT NULL,
   `view` int DEFAULT '0',
   `author` varchar(25) DEFAULT NULL,
-  `is_recommend` int DEFAULT '0'
+  `is_recommend` int DEFAULT '0',
+  `category_id` bigint DEFAULT NULL,
+  `like_num` int DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -37,8 +39,51 @@ CREATE TABLE `book` (
 --
 
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
-INSERT INTO `book` VALUES (1737649827421122562,'1','http://localhost:8080/images/2023.12.21/267c3383-5254-43bd-907e-395f2dbd9b00.jpg',0,'1',NULL),(1739106552535859201,'测试','http://localhost:8080/images/2023.12.25/d41f9b39-a812-4d1c-a919-458e43fc33ba.png',0,'D',1),(1739106900679868417,'测试','http://localhost:8080/images/2023.12.25/9cd8f28d-3b0a-4ae1-9c19-be20971ea47d.jpg',0,'A',0),(1749331325412970498,'付费书籍','http://localhost:8080/images/2024.01.22/cf0ca899-f3f5-4860-82af-c9c5fd7a9cf1.jpg',10,'D',0);
+INSERT INTO `book` VALUES (1752959989644042241,'全职高手','http://localhost:8080/images/2024.02.01/76db5133-7a12-446d-8871-79ba02e94394.jpg',7,'蝴蝶兰',1,1752959989581127682,1),(1752962016025550851,'道诡异仙','http://localhost:8080/images/2024.02.01/98bfe49f-38b3-4943-8b45-b70180930ae8.jpg',1,'狐尾',0,1752962016025550850,1);
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
+
+--
+-- Table structure for table `book_like`
+--
+
+DROP TABLE IF EXISTS `book_like`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `book_like` (
+  `id` bigint DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
+  `book_id` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `book_like`
+--
+
+/*!40000 ALTER TABLE `book_like` DISABLE KEYS */;
+INSERT INTO `book_like` VALUES (1784859096704712706,0,1752959989644042241),(1784861824054988802,0,1752962016025550851);
+/*!40000 ALTER TABLE `book_like` ENABLE KEYS */;
+
+--
+-- Table structure for table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `category` (
+  `id` bigint DEFAULT NULL,
+  `name` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1752959989581127682,'现实'),(1752962016025550850,'玄幻');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
 
 --
 -- Table structure for table `chapter`
@@ -61,7 +106,7 @@ CREATE TABLE `chapter` (
 --
 
 /*!40000 ALTER TABLE `chapter` DISABLE KEYS */;
-INSERT INTO `chapter` VALUES (1730500315216936962,'啊啊啊\n恰恰恰\n额鹅鹅鹅\n反反复复\n走走',1730062707127009282,'章节1',NULL),(1730509317153824769,'Test\n1',1730062707127009282,'章节2',NULL),(1731506896624738305,'很久很久以前12',1730062936287002625,'初入茅庐',NULL),(1734755211806011394,'一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的',1730062936287002625,'123',NULL),(1749332895647141890,'很久很久以前...',1749331325412970498,'第一章 气味儿',0),(1749337645910343682,'又是那一天...',1749331325412970498,'第二章 出示',1),(1750075871541354497,'又过了一天',1749331325412970498,'第三章 落寞',3);
+INSERT INTO `chapter` VALUES (1730500315216936962,'啊啊啊\n恰恰恰\n额鹅鹅鹅\n反反复复\n走走',1730062707127009282,'章节1',NULL),(1730509317153824769,'Test\n1',1730062707127009282,'章节2',NULL),(1731506896624738305,'很久很久以前12',1730062936287002625,'初入茅庐',NULL),(1734755211806011394,'一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的一:标准盒模型和怪异盒模型的区别\n标准盒模型:这种盒模型设置width的时候的值是内容区的宽度,如果再设置padding和margin,border的话盒子的实际宽度会增大\n怪异盒模型:这种盒子的width设置的值为盒子实际的宽度,border和padding的设置不会影响盒子的',1730062936287002625,'123',NULL),(1749332895647141890,'很久很久以前...',1749331325412970498,'第一章 气味儿',0),(1749337645910343682,'又是那一天...',1749331325412970498,'第二章 出示',1),(1750075871541354497,'又过了一天',1749331325412970498,'第三章 落寞',3),(1750792057300234241,'t',1750791984680054786,'第一章',0),(1750792096324038657,'t',1750791984680054786,'第二章',3),(1752254659775774721,'longlong',1749331325412970498,'第四章 想不出',10),(1752962117880029185,'123\r\n1\r\n2\r\n3',1752959989644042241,'第一章',0),(1752962179515326465,'夜雨声烦',1752959989644042241,'第二章',1),(1752962225149353985,'打',1752959989644042241,'第三章',3),(1752962315058454530,'现',1752962016025550851,'第一章',0),(1752962354107424770,'反',1752962016025550851,'第二章',2);
 /*!40000 ALTER TABLE `chapter` ENABLE KEYS */;
 
 --
@@ -75,7 +120,8 @@ CREATE TABLE `comment` (
   `id` bigint DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
-  `book_id` bigint DEFAULT NULL
+  `book_id` bigint DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -84,8 +130,30 @@ CREATE TABLE `comment` (
 --
 
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (1735838350523600897,'1111',0,1730062707127009282),(1735838355267358721,'111111',0,1730062707127009282),(1735838361705615362,'111111',0,1730062707127009282);
+INSERT INTO `comment` VALUES (1735838350523600897,'1111',0,1730062707127009282,NULL),(1735838355267358721,'111111',0,1730062707127009282,NULL),(1735838361705615362,'111111',0,1730062707127009282,NULL),(1752963292746522626,'好看',0,1752959989644042241,NULL),(1784781296672968706,'123',0,1752959989644042241,'2024-04-29 11:06:35');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
+
+--
+-- Table structure for table `favorite`
+--
+
+DROP TABLE IF EXISTS `favorite`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `favorite` (
+  `id` bigint DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
+  `book_id` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `favorite`
+--
+
+/*!40000 ALTER TABLE `favorite` DISABLE KEYS */;
+INSERT INTO `favorite` VALUES (1752978646839353345,1752978523619090434,1752959989644042241),(1784792125459959809,0,1752959989644042241);
+/*!40000 ALTER TABLE `favorite` ENABLE KEYS */;
 
 --
 -- Table structure for table `note`
@@ -121,7 +189,7 @@ CREATE TABLE `purchase_history` (
   `id` bigint DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
   `chapter_id` bigint DEFAULT NULL,
-  `createdtime` int DEFAULT NULL,
+  `cost` bigint DEFAULT NULL,
   `create_time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -131,7 +199,7 @@ CREATE TABLE `purchase_history` (
 --
 
 /*!40000 ALTER TABLE `purchase_history` DISABLE KEYS */;
-INSERT INTO `purchase_history` VALUES (1750069856536129537,0,1749337645910343682,NULL,'2024-01-24 16:15:43'),(1750076288585195521,0,1750075871541354497,NULL,'2024-01-24 16:41:17');
+INSERT INTO `purchase_history` VALUES (1752962473301155842,0,1752962179515326465,1,'2024-02-01 15:49:57'),(1752978638824038401,1752978523619090434,1752962179515326465,1,'2024-02-01 16:54:11');
 /*!40000 ALTER TABLE `purchase_history` ENABLE KEYS */;
 
 --
@@ -145,7 +213,7 @@ CREATE TABLE `user` (
   `id` bigint DEFAULT NULL,
   `username` varchar(25) DEFAULT NULL,
   `password` varchar(25) DEFAULT NULL,
-  `type` int
+  `type` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -154,7 +222,7 @@ CREATE TABLE `user` (
 --
 
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (0,'admin','123456',0),(1727972646331879426,'4','1234',1),(1727973595062476802,'3','1234',1),(1731933008169312257,'123','321',1),(1731933981503696897,'111','111',1),(1731936992380612610,'444241','123',1),(1735195496340017154,'333','1',1);
+INSERT INTO `user` VALUES (0,'admin','123456',0),(1727972646331879426,'4','1234',1),(1727973595062476802,'3','1234',1),(1731933008169312257,'123','321',1),(1731933981503696897,'111','111',1),(1731936992380612610,'444241','123',1),(1735195496340017154,'333','1',1),(1752978523619090434,'d123','123',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -166,4 +234,4 @@ INSERT INTO `user` VALUES (0,'admin','123456',0),(1727972646331879426,'4','1234'
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-26 11:46:47
+-- Dump completed on 2024-04-29 16:29:02

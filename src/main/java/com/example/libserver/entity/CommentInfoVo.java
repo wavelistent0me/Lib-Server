@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class CommentInfoVo {
 
@@ -19,4 +21,6 @@ public class CommentInfoVo {
     private String bookId;
 
     private String userName;
+
+    private Date createTime;
 }

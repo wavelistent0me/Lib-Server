@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -38,6 +35,9 @@ public class CommentController {
 
     @PostMapping("addComment")
     public AjaxResult addComment(@RequestBody Comment comment) {
+
+        comment.setCreateTime(new Date());
+
         commentService.save(comment);
 
         return AjaxResult.Success();
